@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>原子配列と最密面 | Crystal Explorer</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="atoms.css"><script defer src="materials.js"></script><script defer src="atoms.js"></script></head>
+<body>
+<header><div class="brandmark" aria-hidden="true">⬡</div><div><div class="eyebrow">CRYSTAL EXPLORER</div><h1>原子配列と最密面</h1></div><span class="local">LOCAL · OFFLINE READY</span></header>
+<nav class="page-nav" aria-label="ツール"><a href="index.html">六方晶の指数を操作</a><a href="atoms.html" aria-current="page">元素の原子配列を比較</a></nav>
+<main>
+<aside class="controls" aria-label="元素と表示の操作">
+  <div class="section-head"><span>01 / MATERIAL</span><span>常温・常圧の相</span></div>
+  <div class="elements" role="group" aria-label="元素を選択"><button data-element="Fe" aria-pressed="true"><strong>Fe</strong><span>鉄</span><small>BCC</small></button><button data-element="Cu" aria-pressed="false"><strong>Cu</strong><span>銅</span><small>FCC</small></button><button data-element="Mg" aria-pressed="false"><strong>Mg</strong><span>Mg</span><small>HCP</small></button></div>
+  <div class="material-title"><h2 id="material-name"></h2><p id="structure-name"></p></div>
+  <dl class="measurements"><div><dt>格子定数 a</dt><dd id="lattice-a"></dd></div><div id="c-measure"><dt>格子定数 c</dt><dd id="lattice-c"></dd></div><div><dt>最近接原子間距離</dt><dd id="nearest"></dd></div><div><dt>面内の最密方向の原子間隔</dt><dd id="row-distance"></dd></div></dl>
+  <div class="section-head presets-head"><span>02 / PACKING</span><span>面と原子列</span></div>
+  <div class="packing-index"><span id="plane-kind"></span><strong id="plane-index"></strong><small id="plane-family"></small></div>
+  <div class="packing-index"><span>面内の最密方向</span><div id="direction-list" class="direction-list"></div><small id="direction-family"></small></div>
+  <p id="packing-note" class="packing-note"></p>
+  <div class="atom-options"><label><input id="plane-toggle" type="checkbox" checked> 面を重ねる</label><label><input id="direction-toggle" type="checkbox" checked> 最密方向を重ねる</label></div>
+  <div class="ratio-row"><label for="atom-size">球の大きさ</label><output id="size-value">55%</output></div><input type="range" id="atom-size" min="30" max="100" step="5" value="55">
+  <p class="small">100% は最近接距離の半分を半径とする硬球モデル。中心間距離は大きさを変えても一定です。</p>
+  <a id="open-index" class="wide-button index-link" href="index.html?mode=plane&h=0&k=0&l=1" hidden>この底面を4指数で操作する（理想軸比）→</a>
+</aside>
+<section class="viewport atom-viewport" aria-label="単位胞と結晶面">
+  <div class="viewport-head"><div><div class="eyebrow">03 / ATOMIC VIEW</div><h2 id="atom-view-title">α-Fe · BCC</h2></div><span class="scale-badge">元素間で共通の縮尺</span></div>
+  <div class="atom-pair">
+    <div class="atom-panel"><div class="panel-heading"><strong>単位胞の立体</strong><span>ドラッグで回転</span></div><div class="atom-canvas"><svg id="atom-scene" viewBox="0 0 460 430" role="img" aria-label="鉄の単位胞と面"></svg></div></div>
+    <div class="atom-panel"><div class="panel-heading"><strong>結晶面を正面から</strong><span>選択した面の原子</span></div><div class="atom-canvas"><svg id="plane-scene" viewBox="0 0 460 430" role="img" aria-label="鉄の結晶面の平面表示"></svg></div></div>
+  </div>
+  <div class="scene-toolbar"><span>左図：ドラッグで回転</span><div><button id="atoms-reset">視点を戻す</button></div></div>
+  <div class="legend"><span><b class="dot plane-dot"></b>オレンジの輪：面上の原子</span><span><b class="dot vector-dot" style="background:linear-gradient(90deg,#167554 0 33%,#7251a1 33% 66%,#ad476d 66%)"></b>色付きの両矢印：面内の最密方向</span></div>
+  <p class="extent">左は通常の単位胞1個分。右はそこに含まれる同じ原子層を正面から表示。元素間で縮尺を固定しています。</p>
+</section>
+<section class="details"><div><div class="eyebrow">READ THE STRUCTURE</div><h2>いま見ている原子列</h2></div><div id="atom-detail" aria-live="polite"></div></section>
+</main>
+<footer><span>距離の単位 nm（1 nm = 10 Å）</span><details><summary>モデル・数値の出典</summary><p>立方晶は3指数、六方晶は4指数で表記します。各面族から一例を表示し、その面内の独立した最密方向をすべて示します。逆向きは同じ原子列として数えます。立体と平面の両方で同じ原子層を示します。</p><p>数値は元素の格子定数の代表値です。熱振動、温度・圧力による変形や相転移は含めません。Mg は実際の c/a を使用するため、理想 HCP の同一球の完全な接触とはわずかに異なります。</p><p>格子定数：<a href="https://www.webelements.com/iron/crystal_structure.html" target="_blank" rel="noreferrer">Fe</a> / <a href="https://www.webelements.com/copper/crystal_structure.html" target="_blank" rel="noreferrer">Cu</a> / <a href="https://www.webelements.com/magnesium/crystal_structure.html" target="_blank" rel="noreferrer">Mg</a>（WebElements、各ページに原論文を記載）</p><p>構造・指数：<a href="https://lampz.tugraz.at/~hadley/ams_ss/book/crystals/crystalstructure.php" target="_blank" rel="noreferrer">TU Graz — Crystal structure</a> / <a href="https://www.eng.uc.edu/~beaucag/Classes/Properties%20of%20Materials/Homework%202011/AnswersHW1.pdf" target="_blank" rel="noreferrer">University of Cincinnati — BCC の面・方向</a></p></details></footer>
+</body></html>

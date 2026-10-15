@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="六方晶のミラー・ブラベー指数を操作して、結晶方向と結晶面を3Dで確認するローカルビジュアライザー。">
+  <title>六方晶の指数 | Hexagonal Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="geometry.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+  <header><div class="brandmark" aria-hidden="true">⬡</div><div><div class="eyebrow">HEXAGONAL EXPLORER</div><h1>六方晶の指数</h1></div><span class="local">LOCAL · OFFLINE READY</span></header>
+  <nav class="page-nav" aria-label="ツール"><a href="index.html" aria-current="page">六方晶の指数を操作</a><a href="atoms.html">元素の原子配列を比較</a></nav>
+  <main>
+    <aside class="controls" aria-label="指数の操作">
+      <div class="section-head"><span>01 / INDEX</span><span>面と方向の座標</span></div>
+      <div class="mode" role="group" aria-label="表示する対象"><button id="direction-mode" aria-pressed="false">方向 <span>[w x y z]</span></button><button id="plane-mode" aria-pressed="true">面 <span>(h k i l)</span></button></div>
+      <div class="index-display" id="notation" aria-live="polite"></div>
+      <div class="constraint" id="constraint"></div>
+      <div id="inputs"></div>
+      <p class="small">操作する指数は −2〜2。第3指数は和が0になるよう自動計算します（−4〜4）。</p>
+      <div class="section-head presets-head"><span>02 / EXAMPLES</span><span>代表例</span></div>
+      <div id="presets" class="presets"></div>
+      <div class="ratio-row"><span>軸比 <i>c / a</i>（理想値に固定）</span><output id="ratio-value">1.633</output></div>
+      <p class="small">c/a = √(8/3) ≈ 1.633。指数操作ではこの比を固定します。</p>
+    </aside>
+    <section class="viewport" aria-label="3D表示">
+      <div class="viewport-head"><div><div class="eyebrow">03 / CRYSTAL VIEW</div><h2 id="view-title">結晶面</h2></div><div class="view-buttons" role="group" aria-label="視点"><button data-view="iso" aria-pressed="true">斜め</button><button data-view="top" aria-pressed="false">上面</button><button data-view="front" aria-pressed="false">面を正面から</button></div></div>
+      <div id="scene-wrap"><svg id="scene" role="img" aria-label="六方晶の3D表示" viewBox="0 0 800 600"></svg><div id="empty-state" hidden>全指数が0のため、方向は定義されません。</div></div>
+      <div class="scene-toolbar"><span>ドラッグで回転</span><div><button id="reset-view">視点を戻す</button></div></div>
+      <div class="legend"><span><b class="dot axis-dot"></b>w・x・y / z 軸</span><span id="object-legend"><b class="dot vector-dot"></b>面（表示範囲で切り取り）</span></div>
+      <p class="extent" id="extent-note">O は六角柱の底面中央。枠の半径は a、高さは 0〜c。原子配置は表していません。</p>
+    </section>
+    <section class="details" aria-label="現在の幾何情報"><div><div class="eyebrow">GEOMETRY</div><h2 id="detail-title">軸ベクトルの和</h2></div><div id="detail-content"></div></section>
+  </main>
+  <footer><span>負の指数は数字の上のバーで表示</span><details><summary>座標と表示の定義</summary><p>底面の六角形の中心を原点 O とし、w = (1/2, √3/2, 0)、x = (1/2, −√3/2, 0)、y = (−1, 0, 0)、z = (0, 0, c/a) とします。w + x + y = 0、c/a = √(8/3) です。</p><p>方向 [w x y z] は各軸ベクトルの和として表示します。面 (h k i l) もこの軸を基準とし、i = −(h + k) を満たします。入力指数を約分せず、各軸上の切片に対応する1枚を描きます。平面は六角柱の範囲で切り取っています。</p><p>面の定義：<a href="https://dictionary.iucr.org/Miller_indices" target="_blank" rel="noreferrer">IUCr — Miller indices</a></p></details></footer>
+</body>
+</html>

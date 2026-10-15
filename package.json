@@ -1,0 +1,7 @@
+{
+  "name": "hexagonal-index-visualizer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Miller-Bravais plane and direction visualizer",
+  "scripts": {"start": "node server.cjs", "test": "node --test geometry.test.cjs materials.test.cjs"}
+}

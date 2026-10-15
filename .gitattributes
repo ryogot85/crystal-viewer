@@ -1,0 +1,3 @@
+dist/** -text
+docs/** -text
+release/*.zip binary
